@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin: 20px 0;
+}
+
+#movieInput {
+    padding: 10px;
+    font-size: 16px;
+    width: 60%;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #555;
+}

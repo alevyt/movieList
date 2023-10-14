@@ -1,10 +1,11 @@
 function searchMovie() {
-    const apiKey = 'YOUR_API_KEY'; // Get your API key from OMDB or another movie API
+    const apiKey = '4603613e'; // Get your API key from OMDB or another movie API
     const movieInput = document.getElementById('movieInput').value;
 
     fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieInput}`)
         .then(response => response.json())
         .then(data => {
+            console.log('results:', data);
             const movieResults = document.getElementById('movieResults');
             movieResults.innerHTML = ''; // Clear previous results
 
