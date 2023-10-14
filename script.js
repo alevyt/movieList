@@ -1,33 +1,39 @@
+import MovieCard from "./movie-card.js";
+
+function displayMovieResults(data) {
+    const movieResults = document.getElementById('movieResults');
+    movieResults.innerHTML = ''; // Clear previous results
+
+    if (data.Response === "True") {
+        console.log('data', data);
+        const movies = data.Search;
+        movies.forEach(async movie => {
+            // Create an instance of the MovieCard element
+            const movieCard = new MovieCard();
+
+            // Set the attributes for the MovieCard element
+            movieCard.setAttribute('title', movie.Title);
+            movieCard.setAttribute('year', movie.Year);
+            movieCard.setAttribute('director', movie.Director);
+            movieCard.setAttribute('runtime', movie.Runtime);
+            movieCard.setAttribute('actors', movie.Actors);
+            movieCard.setAttribute('poster', movie.Poster);
+
+            // Append the MovieCard to the results container
+            movieResults.appendChild(movieCard);
+        });
+    } else {
+        movieResults.textContent = "No results found.";
+    }
+}
+
 function searchMovie() {
-    const apiKey = '4603613e'; // Get your API key from OMDB or another movie API
+    const apiKey = '4603613e'; // Replace with your API key
     const movieInput = document.getElementById('movieInput').value;
 
     fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieInput}`)
         .then(response => response.json())
-        .then(data => {
-            console.log('results:', data);
-            const movieResults = document.getElementById('movieResults');
-            movieResults.innerHTML = ''; // Clear previous results
-
-            if (data.Response === "True") {
-                const movies = data.Search;
-                movies.forEach(movie => {
-                    const title = movie.Title;
-                    const year = movie.Year;
-                    const poster = movie.Poster;
-
-                    const movieCard = document.createElement('div');
-                    movieCard.classList.add('movie-card');
-                    movieCard.innerHTML = `
-                        <h2>${title} (${year})</h2>
-                        <img src="${poster}" alt="${title} Poster">
-                    `;
-                    movieResults.appendChild(movieCard);
-                });
-            } else {
-                movieResults.textContent = "No results found.";
-            }
-        })
+        .then(displayMovieResults)
         .catch(error => {
             console.error('Error:', error);
         });
