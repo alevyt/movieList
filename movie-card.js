@@ -28,6 +28,7 @@ class MovieCard extends HTMLElement {
                 /* Poster image at the top, full width */
                 img {
                     width: 100%;
+                    max-height: 270px;
                     display: block; /* Removes extra space under the image */
                 }
                 
@@ -44,7 +45,7 @@ class MovieCard extends HTMLElement {
                 }
                 
                 h2 {
-                    font-size: 1.5rem;
+                    font-size: 1rem;
                 }
                 
                 p {
@@ -52,17 +53,39 @@ class MovieCard extends HTMLElement {
                 }
             </style>
             <div class="movie-card">
-                <img src="${this.getAttribute('poster')}" alt="${this.getAttribute('title')} Poster">
+                <img height=250 src="placeholder-image.jpg" alt="Loading..." class="poster">
                 <div class="movie-info">
-                    <h2>${this.getAttribute('title')}</h2>
+                    <h2>${this.getAttribute('title')} (${this.getAttribute('year')})</h2>
+                </div>
+                <div class="additional-info" style="display: none;">
                     <p><strong>Director:</strong> ${this.getAttribute('director')}</p>
                     <p><strong>Length:</strong> ${this.getAttribute('runtime')}</p>
                     <p><strong>Actors:</strong> ${this.getAttribute('actors')}</p>
                 </div>
             </div>
         `;
+
+        const poster = shadow.querySelector('.poster');
+        const movieInfo = shadow.querySelector('.additional-info');
+        const movieCard = shadow.querySelector('.movie-card');
+
+        // Load the actual poster image
+        const actualPoster = new Image();
+        actualPoster.src = this.getAttribute('poster');
+        actualPoster.onload = () => {
+            // Replace the placeholder image with the actual poster when it's loaded
+            poster.src = this.getAttribute('poster');
+        };
+
+        movieCard.addEventListener('click', () => {
+            // Toggle the display of additional info when the card is clicked
+            movieInfo.style.display = movieInfo.style.display === 'none' ? 'block' : 'none';
+        });
     }
 }
+
+
+
 
 customElements.define('movie-card', MovieCard);
 
