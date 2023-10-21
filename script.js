@@ -30,8 +30,9 @@ function displayMovieResults(data) {
 function searchMovie() {
     const apiKey = '4603613e'; // Replace with your API key
     const movieInput = document.getElementById('movieInput').value;
+    const year = document.getElementById('year-filter').value;
 
-    fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieInput}`)
+    fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieInput}${year.trim()!==''?'&y='+year:''}`)
         .then(response => response.json())
         .then(displayMovieResults)
         .catch(error => {

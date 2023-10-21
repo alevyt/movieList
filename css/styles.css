@@ -31,6 +31,43 @@ h1 {
     background-color: #555;
 }
 
+/* Add this CSS to your external CSS file or within a <style> block in your HTML */
+#filter-container {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#filter-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#year-filter {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80px;
+}
+
+#filter-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#filter-button:hover {
+    background-color: #0056b3;
+}
+
 #movieResults {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
