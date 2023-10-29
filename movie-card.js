@@ -14,7 +14,7 @@ class MovieCard extends HTMLElement {
         const shadow = this.shadowRoot;
         shadow.innerHTML = `
             <style>
-                /* Style for the movie card container */
+            /* Style for the movie card container */
                 .movie-card {
                     display: inline-block;
                     width: 200px;
@@ -50,10 +50,10 @@ class MovieCard extends HTMLElement {
                 
                 p {
                     margin: 8px 0;
-                }
+                }                
             </style>
-            <div class="movie-card">
-                <img height=250 src="placeholder-image.jpg" alt="Loading..." class="poster">
+            <div class="movie-card" data-imdbid="${this.getAttribute('imdbID')}">
+                <img height=250 src="img/loading.gif" alt="Loading..." class="poster">
                 <div class="movie-info">
                     <h2>${this.getAttribute('title')} (${this.getAttribute('year')})</h2>
                 </div>
@@ -78,13 +78,23 @@ class MovieCard extends HTMLElement {
         };
 
         movieCard.addEventListener('click', () => {
+
             // Toggle the display of additional info when the card is clicked
+            const apiKey = '4603613e';
+            const imdbID = this.getAttribute('imdbID');
+            fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`)
+                .then(response => response.json())
+                .then((data) => {
+                    console.log('movie data ', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             movieInfo.style.display = movieInfo.style.display === 'none' ? 'block' : 'none';
+            console.log('imdbID', this.getAttribute('imdbID'));
         });
     }
 }
-
-
 
 
 customElements.define('movie-card', MovieCard);

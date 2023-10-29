@@ -70,8 +70,51 @@ h1 {
 
 #movieResults {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  .pagination-list li {
+    margin: 0 5px;
+  }
+  
+  .pagination-list li a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination-list li a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .pagination-list li a.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Styles for selected page */
+  .pagination-list li a.selected {
+    background-color: #ff9800;
+    color: #fff;
+  }
+  
