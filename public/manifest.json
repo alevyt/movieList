@@ -1,0 +1,10 @@
+{
+    "name": "Movies List",
+    "short_name": "Movies List",
+    "description": "react app that searches movies database",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000"
+  }
+  
