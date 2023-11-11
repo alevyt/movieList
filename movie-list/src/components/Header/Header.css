@@ -1,0 +1,16 @@
+/* Header/Header.css */
+.header {
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 1rem;
+    text-align: center; /* Center content horizontally */
+  }
+  
+  .logo-container {
+    display: inline-block; /* Ensure the container only takes the width of the content */
+  }
+  
+  .logo {
+    width: 100px; /* Set a specific width for the logo */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
