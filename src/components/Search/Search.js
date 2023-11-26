@@ -1,5 +1,6 @@
 // Search.js
 import React, { useState } from 'react';
+import { fetchData } from '../api';
 import './Search.css';
 
 const Search = ({ onSearch }) => {
@@ -8,16 +9,9 @@ const Search = ({ onSearch }) => {
   const handleSearch = (movieInput) => {
     // Perform search logic and get results
 
-    const apiKey = '4603613e';
-    
-    fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieInput}`)
-        .then(response => response.json())
-        .then((data) => {
-          onSearch(data.Search);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    fetchData(searchQuery).then(data => {
+      onSearch(data, searchQuery);
+    })
   };
 
   const handleInputChange = (event) => {
@@ -33,6 +27,7 @@ const Search = ({ onSearch }) => {
   return (
     <div className="search">
       <input
+        id="searchField"
         type="text"
         placeholder="Search"
         className="search-input"
